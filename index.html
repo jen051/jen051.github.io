@@ -1,166 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!--tells the browser to use utf-8 encoding when translating machine code to human-readable code-->
-    <!--could also use ascii encoding, but it is outdated and may not display characters correctly-->
-    <meta charset="UTF-8" />
 
-    <!--viewport is the area where content is displayed. this sets viewport size and scale-->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <!--tells the browser to use utf-8 encoding when translating machine code to human-readable code-->
+  <!--could also use ascii encoding, but it is outdated and may not display characters correctly-->
+  <meta charset="UTF-8" />
 
-    <!--sets css styles-->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+  <!--viewport is the area where content is displayed. this sets viewport size and scale-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!--title is required in HTML docs, the title element:
+  <!--sets css styles-->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!--title is required in HTML docs, the title element:
             1. defines a title in the browser toolbar
             2. provides a title for the page when it is added to favorites
             3. displays a title for the page in search-engine results-->
 
-    <title>Jennifer Jiang</title>
-  </head>
+  <title>Jennifer Jiang</title>
+</head>
 
-  <body>
-    <!--navbar, contains navigation links-->
-    <nav>
-      <!-- <h1>Jennifer Jiang</h1> -->
-      <!--ul, unordered list; li, list-->
-      <ul>
-        <!--a, defines a hyperlink; href, most important attribute, defines link destination-->
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contacts" class="nav-link">Contacts</a></li>
-      </ul>
-    </nav>
+<body>
+  <!--navbar, contains navigation links-->
+  <nav>
+    <!-- <h1>Jennifer Jiang</h1> -->
+    <!--ul, unordered list; li, list-->
+    <ul>
+      <!--a, defines a hyperlink; href, most important attribute, defines link destination-->
+      <li><a href="#home" class="nav-link">H O M E</a></li>
+      <li><a href="#projects" class="nav-link">P R O J E C T S</a></li>
+      <li><a href="#contacts" class="nav-link">C O N T A C T S</a></li>
+    </ul>
+  </nav>
 
-    <!--hero section, engages users, should be eye-catching-->
-    <section id="home">
-      <div class="title">
-        <!-- <img
-          src="assets/img/title0.jpg"
-          alt="title img"
-          loading="lazy"
-          class="titleimg"
-        /> -->
+  <!--hero section, engages users, should be eye-catching-->
+  <section id="home">
+    <div class="title">
 
-        <div class="slideshow">
-          <div class="slide">
-            <img src="assets/img/title0.jpg" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/title1.jpg" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/title2.jpg" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/title3.jpg" />
-          </div>
-
-          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-          <div style="text-align: center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-          </div>
+      <div class="slideshow">
+        <div class="slide">
+          <img src="assets/img/title0.jpg" />
+        </div>
+        <div class="slide">
+          <img src="assets/img/title1.jpg" />
+        </div>
+        <div class="slide">
+          <img src="assets/img/title2.jpg" />
+        </div>
+        <div class="slide">
+          <img src="assets/img/title3.jpg" />
         </div>
 
-        <div class="titleblock">
-          <h1
-            style="font-size: 7vw; font-family: 'Times New Roman', Times, serif"
-          >
-            Jennifer Jiang
-          </h1>
-          <!-- <br />
-          <h3 style="font-size: 14px;">Computer Science student at Georgia Tech</h3>
-          <br />
-          <h3 style="font-size: 12px;">
-            Passionate about artificial intelligence, robotics, and data
-            analysis.
-          </h3> -->
-        </div>
-      </div>
-    </section>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-    <section id="about">
-      <div class="about">
-        <h1>About</h1>
-        <br />
-        <p>
-          My name is Jennifer Jiang, and I’m a frenshman student majoring in
-          computer science at Georgia Tech. I’m passionate about all things tech
-          related, including artificial intelligence, data analysis, and
-          robotics. In my free time, I enjoy exercising, travelling, and
-          reading.
-        </p>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h1>Projects</h1>
-      <div class="project-container">
-        <div class="project">
-          <a href="frc2023.html">
-            <div class="caption">
-              <h3>FIRST Robotics 2023</h3>
-              <p>Java/Robotics</p>
-            </div>
-            <img src="assets/img/frc2023.png" />
-          </a>
-        </div>
-        <div class="project">
-          <a href="frc2022.html">
-            <div class="caption">
-              <h3>FIRST Robotics 2022</h3>
-              <p>Java/Python/Robotics/Computer Vision</p>
-            </div>
-            <img src="assets/img/frc2022.jpg" />
-          </a>
-        </div>
-        <div class="project">
-          <a href="booksearcher.html">
-            <div class="caption">
-              <h3>Book Searcher</h3>
-              <p>Java/Python/Data Analysis/Jswing/GUI</p>
-            </div>
-            <img src="assets/img/booksearcher.png " />
-          </a>
-        </div>
-        <div class="project">
-          <a href="plantmanager.html">
-            <div class="caption">
-              <h3>Plant Manager</h3>
-              <p>Java/GUI</p>
-            </div>
-            <img src="assets/img/plantmanager.png" />
-          </a>
+        <div style="text-align: center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
         </div>
       </div>
 
-      <section id="contacts">
-        <h1>Connect with me!</h1>
-        <div class="icon-container">
-          <div class="icon">
-            <a href="https://www.linkedin.com/in/jennifer-jiang-/">
-              <img src="assets/img/linkedin_symbol.png" />
-            </a>
-          </div>
-          <div class="icon">
-            <a href="https://github.com/jen051">
-              <img src="assets/img/github_symbol.png" />
-            </a>
-          </div>
-          <div class="icon">
-            <a href="mailto:yjiang607@gatech.edu">
-              <img src="assets/img/mail_symbol.png" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <div class="titleblock">
+        <!-- <h1 style="font-size: 4vw; font-family: 'Impact', Ariel, sans-serif; font-weight: lighter;"> -->
+          <!-- HI! <br/> -->
+        <!-- </h1> -->
+        <h1>
+          JENNIFER JIANG
+        </h1>
+      </div>
+    </div>
+  </section>
 
-      <!-- <h2 class="projects-title">Projects</h2>
+  <section id="about">
+    <div class="about">
+      <h1>ABOUT</h1>
+      <br />
+      <p>
+        My name is Jennifer Jiang, and I’m a sophomore at Georgia Tech majoring in Computer Science.
+        <br/>I’m passionate about all things tech related, including artificial intelligence, data analysis, and
+        robotics. 
+        <br/>In my free time, I enjoy exercising, travelling, and
+        reading.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h1>PROJECTS</h1>
+    <div class="project-container">
+      <div class="project">
+        <a href="hacklytics2024.html">
+          <div class="caption">
+            <h3>Robotic Registers: GAN Model for Synthesizing Logic Circuits</h3>
+            <p>Python/GAN/Generative AI/Data Analysis</p>
+          </div>
+          <img src="assets/img/gan.png" />
+        </a>
+      </div>
+      <div class="project">
+        <a href="frc2023.html">
+          <div class="caption">
+            <h3>FIRST Robotics 2023</h3>
+            <p>Java/Robotics</p>
+          </div>
+          <img src="assets/img/frc2023.png" />
+        </a>
+      </div>
+      <div class="project">
+        <a href="frc2022.html">
+          <div class="caption">
+            <h3>FIRST Robotics 2022</h3>
+            <p>Java/Python/Robotics/Computer Vision</p>
+          </div>
+          <img src="assets/img/frc2022.jpg" />
+        </a>
+      </div>
+      <div class="project">
+        <a href="booksearcher.html">
+          <div class="caption">
+            <h3>Book Searcher</h3>
+            <p>Java/Python/Data Analysis/Jswing/GUI</p>
+          </div>
+          <img src="assets/img/booksearcher.png " />
+        </a>
+      </div>
+      <div class="project">
+        <a href="plantmanager.html">
+          <div class="caption">
+            <h3>Plant Manager</h3>
+            <p>Java/GUI</p>
+          </div>
+          <img src="assets/img/plantmanager.png" />
+        </a>
+      </div>
+    </div>
+
+    
+
+    <!-- <h2 class="projects-title">Projects</h2>
       <div class="projects-container">
         <div class="project-container project-card FRC2022">
           <h3 class="project-title">
@@ -190,7 +169,28 @@
           <p class="project-summary">Java plant care reminder program</p>
         </div>
       </div> -->
-    </section>
-    <script src="script.js"></script>
-  </body>
+  </section>
+  <section id="contacts">
+    <h1>Connect with me!</h1>
+    <div class="icon-container">
+      <div class="icon">
+        <a href="https://www.linkedin.com/in/jennifer-jiang-/">
+          <img src="assets/img/linkedin_symbol.png" />
+        </a>
+      </div>
+      <div class="icon">
+        <a href="https://github.com/jen051">
+          <img src="assets/img/github_symbol.png" />
+        </a>
+      </div>
+      <div class="icon">
+        <a href="mailto:yjiang607@gatech.edu">
+          <img src="assets/img/mail_symbol.png" />
+        </a>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+
 </html>

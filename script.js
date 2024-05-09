@@ -24,3 +24,11 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
 }
+
+// function reset(){
+//     let slides = document.getElementsByClassName("slide");
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     // slides[0].style.display = "active"
+// }
