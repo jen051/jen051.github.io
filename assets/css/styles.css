@@ -92,13 +92,14 @@ nav ul li {
 /* Fading animation */
 .fade {
   animation-name: fade;
-  animation-duration: 5s;
+  animation-duration: 6s;
 }
 
 @keyframes fade {
-  0% {opacity: .4} 
-  50% {opacity: 1}
-  100% {opacity: .4} 
+  0% {opacity: .3} 
+  25% {opacity: 1}
+  80% {opacity: 1}
+  100% {opacity: .3} 
 }
 
 
