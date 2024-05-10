@@ -1,23 +1,26 @@
 /*variables*/
 
 :root {
-  --font-family: "Helvetica", "Ariel", sans-serif;
+  --title-font: 'Jaro', Impact, 'Arial Narrow Bold', sans-serif;
+  --text-font:  'Roboto', Geneva, Tahoma, sans-serif;
   --normal-font: 400;
   --bold-font: 700;
   --bolder-font: 900;
   --bg-color: #0b0c10;
   --bg-color-light-accent: #1f2833;
-  --text-color-gray: #c5c6c7;
+  --text-color-gray: #dadada;
   --text-color-cyan: #66fcf1;
   --text-color-shadow: #45a29e;
-  --bottom-margin: 0.5rem; /*rem=root-em, dictate an element's font size relative to the size of the root element*/
+  --bottom-margin: 0.5rem;
+  /*rem=root-em, dictate an element's font size relative to the size of the root element*/
   --bottom-margin-2: 1rem;
   --line-height: 1.7rem;
   --transition: 0.3s;
 }
 
 html {
-  scroll-behavior: smooth; /*only matters when scrolling by link, makes it look nicer; doesnt affect user scrolling*/
+  scroll-behavior: smooth;
+  /*only matters when scrolling by link, makes it look nicer; doesnt affect user scrolling*/
 }
 
 * {
@@ -41,31 +44,33 @@ a:hover {
 
 body {
   background-color: var(--bg-color);
-  font-family: var(--font-family);
+  /* font-family: var(--font-family); */
 }
 
 /*styling navbar*/
 nav {
-  position: sticky; /*makes navbar stay at the top of the page no matter what*/
+  position: sticky;
+  /*makes navbar stay at the top of the page no matter what*/
   top: 0;
   left: 0;
-  z-index: 10; /*makes sure navbar displays over other elements*/
+  z-index: 10;
+  /*makes sure navbar displays over other elements*/
   display: flex;
   align-items: center;
-  justify-content: space-between; /*defines how the browser distributes space*/
+  justify-content: space-between;
+  /*defines how the browser distributes space*/
   padding: 1rem 1.5rem;
   background-color: var(--bg-color);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /*adds shadow under navbar*/
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  /*adds shadow under navbar*/
 }
-
-/* nav h1 {
-  color: var(--text-color-cyan);
-} */
 
 nav a {
   color: var(--text-color-cyan);
   transition: var(--transition);
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* font-family: Impact, 'Arial Narrow Bold', sans-serif; */
+  font-family: var(--title-font);
+
   font-weight: lighter;
 }
 
@@ -96,10 +101,21 @@ nav ul li {
 }
 
 @keyframes fade {
-  0% {opacity: .3} 
-  25% {opacity: 1}
-  80% {opacity: 1}
-  100% {opacity: .3} 
+  0% {
+    opacity: .3
+  }
+
+  25% {
+    opacity: 1
+  }
+
+  80% {
+    opacity: 1
+  }
+
+  100% {
+    opacity: .3
+  }
 }
 
 
@@ -157,28 +173,38 @@ nav ul li {
   transform: translate(-50%, -50%);
 }
 
-.titleblock h1{
+.titleblock h1 {
   color: var(--text-color-cyan);
   /* font-size: 2vw; */
   /* margin-bottom: 30px;
   margin-top: 50px; */
   text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* font-family:  Impact, 'Arial Narrow Bold', sans-serif; */
+  font-family: var(--title-font);
+
+  /* font-family: 'Jaro', Impact, 'Arial Narrow Bold', sans-serif; */
+
   font-weight: lighter;
 }
 
 .about {
   height: auto;
   position: relative;
+  /* padding-bottom: 20px; */
+
 }
 
-.about h1{
+.about h1 {
   color: var(--text-color-cyan);
   /* font-size: 2vw; */
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-top: 50px;
   text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: var(--title-font);
+
+  /* font-family: 'Jaro', Impact, 'Arial Narrow Bold', sans-serif; */
+
+  /* font-family:  Impact, 'Arial Narrow Bold', sans-serif; */
   font-weight: lighter;
 }
 
@@ -192,8 +218,10 @@ nav ul li {
   line-height: 150%;
   padding: 15px;
   border-radius: 10px;
-  background-color:var(--bg-color-light-accent);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--bg-color-light-accent);
+  font-family: var(--text-font);
+
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 /*projects*/
@@ -211,7 +239,11 @@ nav ul li {
   margin-bottom: 30px;
   margin-top: 50px;
   text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: var(--title-font);
+
+  /* font-family: 'Jaro', Impact, 'Arial Narrow Bold', sans-serif; */
+
+  /* font-family:  Impact, 'Arial Narrow Bold', sans-serif; */
   font-weight: lighter;
 }
 
@@ -221,13 +253,17 @@ nav ul li {
   margin: 0;
   padding: 20px;
   padding-bottom: 10px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--text-font);
+
+  /* font-family: 'Roboto', Geneva, Tahoma, sans-serif; */
 }
 
 .project p {
   color: var(--text-color-gray);
   margin: 4px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--text-font);
+
+  /* font-family: 'Roboto', Geneva, Tahoma, sans-serif; */
 }
 
 .project img {
@@ -280,16 +316,16 @@ nav ul li {
   transform: scale(1.1);
 }
 
-.project:hover .caption{
+.project:hover .caption {
   border-color: var(--text-color-cyan);
   /* color: var(--text-color-cyan); */
 }
 
-.project:hover p{
-    color: var(--text-color-cyan);
+.project:hover p {
+  color: var(--text-color-cyan);
 }
 
-.project:hover h3{
+.project:hover h3 {
   color: var(--text-color-cyan);
 }
 
@@ -297,6 +333,7 @@ nav ul li {
   from {
     opacity: 0%;
   }
+
   to {
     opacity: 100%;
   }
@@ -356,6 +393,7 @@ nav ul li {
   color: var(--text-color-shadow);
   transform: scale(1.1);
 }
+
 .active,
 .dot:hover {
   background-color: var(--text-color-shadow);
@@ -418,7 +456,10 @@ nav ul li {
   margin-bottom: 30px;
   margin-top: 50px;
   text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: var(--title-font);
+
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+  /* font-family: 'Jaro', Impact, 'Arial Narrow Bold', sans-serif; */
   font-weight: lighter;
 }
 
@@ -432,11 +473,13 @@ nav ul li {
   margin-bottom: 20px;
   height: 1vh;
 }
+
 .icon {
   margin: auto;
   position: center;
 }
-.icon img{
+
+.icon img {
   position: center;
   object-fit: fill;
   height: 4vh;
@@ -506,6 +549,7 @@ nav ul li {
   font-size: 25px;
   line-height: 150%;
 }
+
 /* .projects {
   background-color: var(--bg-color);
   padding: 32px 0;
