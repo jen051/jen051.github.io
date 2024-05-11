@@ -1,94 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hacklytics 2024</title>
-  </head>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <body>
-    <!--navbar, contains navigation links-->
-    <nav>
-      <!-- <h1>Jennifer Jiang</h1> -->
-      <!--ul, unordered list; li, list-->
-      <ul>
-        <!--a, defines a hyperlink; href, most important attribute, defines link destination-->
-        <li><a href="index.html#home" class="nav-link">Home</a></li>
-        <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-        <li><a href="index.html#contacts" class="nav-link">Contacts</a></li>
-      </ul>
-    </nav>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+    rel="stylesheet">
 
-    <div class="project-pages">
-      <div class="title">
-        <div class="slideshow">
-          <div class="slide">
-            <img src="assets/img/ganGraph.png" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/roboticregisters.PNG" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/hacklytics.png" />
-          </div>
-          
-          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  <title>Hacklytics 2024</title>
+</head>
 
-          <div style="text-align: center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-          </div>
+<body>
+  <!--navbar, contains navigation links-->
+  <nav>
+    <!-- <h1>Jennifer Jiang</h1> -->
+    <!--ul, unordered list; li, list-->
+    <ul>
+      <!--a, defines a hyperlink; href, most important attribute, defines link destination-->
+      <li><a href="index.html#home" class="nav-link">HOME</a></li>
+      <li><a href="index.html#projects" class="nav-link">PROJECTS</a></li>
+      <li><a href="index.html#contacts" class="nav-link">CONNECT</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-pages">
+    <div class="title">
+      <div class="slideshow">
+        <div class="slide">
+          <img src="assets/img/ganGraph.png" />
+        </div>
+        <div class="slide">
+          <img src="assets/img/intel.jpg" />
+        </div>
+        <div class="slide">
+          <img src="assets/img/roboticregisters.PNG" />
         </div>
 
-        <div class="titleblock">
-          <h1
-            style="font-size: 3vw; font-family: 'Times New Roman', Times, serif"
-          >
-            Hacklytics 2024: GAN Model for Synthesizing Logic Circuits
-          </h1>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div style="text-align: center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
         </div>
       </div>
 
-      <div class="project-pages-main">
-        <p>
-          For the 2023 competition season, I was the team captain and the lead
-          programmer of my robotics team, 4627 Manning Robotics. I worked on
-          programming the main robot mechanics, including an arm that lifts and
-          extends, a claw that opens and closes to pick up game pieces,
-        </p>
-        <br />
-
-        <ul>
-          <li>Improved Java and Python programming skills</li>
-          <li>Gained insight into PID control loops</li>
-          <li>
-            Worked with
-            <a href="https://docs.revrobotics.com/through-bore-encoder/"
-              >REV Through Bore Encoders</a
-            >
-            and
-            <a href="https://www.playingwithfusion.com/productview.php?pdid=96">
-              Time of Flight Sensors</a
-            >
-            to obtain and process accurate robot positional data.
-          </li>
-          <li>Developed leadership and project management skills</li>
-          <li>
-            Introduced and taught new members fundamental programming skills and
-            robotic systems
-          </li>
-        </ul>
-      </div>
-      <div class="back-button">
-        <a href="index.html#projects">BACK TO PROJECTS</a>
+      <div class="titleblock">
+        <h1 style="font-size: 4vw;">
+          Hacklytics 2024: GAN Model for Synthesizing Logic Circuits
+        </h1>
       </div>
     </div>
-    <script src="script.js"></script>
-  </body>
+
+    <div class="content">
+      <h1>
+        OVERVIEW
+      </h1>
+      <p>
+        In February 2024, I had the opportunity to participate in my first ever hackathon – Hacklytics, the largest Data
+        Science hackathon in the US. Our team, the Robotic Registers, created Moor Circuit Gen 1(MCG-1), a Graph
+        Generative Adversal Network(GAN) Deep Learning model for generating digital logic circuits. We won 1st place in
+        the Intel Development Cloud category.
+        <a href="https://devfolio.co/projects/robotic-registers-1f7e">Check out our project here!</a>
+        <br><br />
+        Our model was trained on a <a href="https://github.com/ajay3568yadav/SURI">dataset</a> consisting of over 50,000
+        existing digital logic circuits created by Ajay Yadav, one of my teammates. After training, the MCG-1
+        model could generate viable random digital logic circuits without discontinuities or improper connections.
+        <br><br />
+        The MCG-1 model could be beneficial for those researching and developing technology centered around FPGA and
+        ASIC development. The ability to generate a viable random circuit allows for a model that could be further
+        trained to generate a Register Transfer Level (RTL) design from a much higher-level circuit or description. If
+        used properly, this technology could rapidly cut down on the production time associated with developing chips
+        with Very Large Scale Integration that typically takes years to produce as all gates must be hand-placed to be
+        packed into a small package.
+      </p>
+      <h1>
+        PERSONAL WORK
+      </h1>
+      <p>
+        During the hackathon, I mainly worked on backend development of the GAN model and its training loops. As my
+        understanding of the GAN model evolved, I also researched and experimented with different ML models, eventually
+        deciding to continue with the GAN model approach.
+      </p>
+      <h1>
+        SKILLS
+      </h1>
+      <p>
+        Python, Graph Generative Adversal Network, Data Analysis, Jupyter Notebook, Intel Development Cloud
+      </p>
+    </div>
+
+    <div class="back-button">
+      <a href="index.html#projects">BACK TO PROJECTS</a>
+    </div>
+  </div>
+  <script src="projscript.js"></script>
+</body>
+
 </html>
