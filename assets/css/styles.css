@@ -146,6 +146,22 @@ nav ul li {
   position: relative;
 }
 
+.top{
+  top: 0;
+  left: 0;
+  height: 400px;
+  position: relative;
+  display: flex;
+}
+
+.top iframe {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  position: relative;
+}
+
 .slide {
   display: none;
 }
@@ -156,6 +172,15 @@ nav ul li {
   height: auto;
   position: relative;
   display: flex;
+}
+
+.hackgt11title h1{
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left:10px;
+  margin-right:10px;
+  text-align: center;
+  font-family:var(--title-font);
 }
 
 .titleblock {
