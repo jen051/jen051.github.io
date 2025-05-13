@@ -1,0 +1,98 @@
+.hero{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px
+}
+
+.hero img{
+    margin-right: 5%;
+    margin-top: 5px;
+}
+
+.hero-desc{
+    margin-left: 5%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    gap: 20px
+}
+
+.hero h1{
+    text-align: left;
+    width: 80%;
+    font-size: 60px;
+    font-weight: 600;
+    background: linear-gradient(267deg, #c84630 0.5%, #39A0ED 100%);
+    background-clip:text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero h1 span{
+    -webkit-text-fill-color: #f1faee;
+}
+
+.hero h2{
+    text-align: centeleftr;
+    width: 80%;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.hero p{
+    width:85%;
+    text-align: left;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.hero p a:link{
+    color: #9AD8FF;
+    text-decoration: none;
+}
+
+.hero p a:visited{
+    color: #9AD8FF;
+    text-decoration: none;
+}
+
+.hero p a:hover{
+    color: #39A0ED;
+    text-decoration: underline;
+}
+
+.hero-action{
+    display: flex;
+    align-items: center;
+    gap:25px;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.hero-connect{
+    padding: 15px 35px;
+    border-radius: 50px;
+    border:2px solid #9AD8FF;
+    cursor: pointer;
+}
+
+.hero-resume{
+    padding: 15px 35px;
+    border-radius: 50px;
+    border:2px solid #9AD8FF;
+    cursor: pointer;
+}
+
+.hero-connect:hover{
+    border:2px solid #39A0ED;
+    color:#9AD8FF;
+    transform: scale(1.05);
+}
+
+.hero-resume:hover{
+    color:#9AD8FF;
+    border:2px solid #39A0ED;
+    transform: scale(1.05);
+}

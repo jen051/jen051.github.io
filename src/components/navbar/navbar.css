@@ -1,0 +1,33 @@
+.navbar{
+    display:flex;
+    align-self: flex-end;
+    align-items:center;
+    justify-content: space-between;
+    margin: 5px 20px
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 60px;
+    font-size: 20px;
+    transition: 0.5s;
+}
+.nav-menu li:hover{
+    text-decoration:underline;
+    text-decoration-color: #39A0ED;
+    text-decoration-style: wavy;
+    transform: scale(1.05);
+}
+
+/* .nav-connect{
+    padding: 15px 35px;
+    border-radius: 50px;
+    background: linear-gradient(267deg, #c84630 0.5%, #39A0ED 100%);
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.nav-connect:hover{
+    transform: scale(1.05);
+} */
