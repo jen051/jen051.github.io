@@ -1,0 +1,94 @@
+.about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin: 5% 5%;
+}
+
+.about-desc {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    gap: 10px
+}
+
+.about h1 {
+    text-align: left;
+    font-size: 50px;
+    font-weight: 600;
+    background: linear-gradient(267deg, #ff5a3d 0.5%, #39A0ED 130%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about h2 {
+    text-align: left;
+    font-size: 30px;
+    font-weight: 600;
+    background: linear-gradient(267deg, #ff5a3d 0.5%, #39A0ED 110%);
+    margin-top: 2%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about p {
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.about p span {
+    -webkit-text-fill-color: #9AD8FF;
+}
+
+.cs-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0;
+    margin-top: 5px;
+    list-style: none;
+}
+
+.cs-interests li {
+    border: 2px solid #9AD8FF;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 20px;
+}
+
+.interests {
+    color: white;
+    font-size: 20px;
+    position: relative;
+    height: 2.4rem;
+    /* adjust to match your font-size + line-height */
+    overflow: hidden;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+}
+
+/* 2) All items are stacked and hidden by default */
+.interests li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* 3) The “active” item fades/slides into view */
+.interests li.active {
+    opacity: 1;
+    transform: translateY(0);
+}

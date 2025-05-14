@@ -2,11 +2,13 @@ import React from 'react'
 import './hero.css'
 import 'animate.css';
 import profile_img from '../../assets/profile-img.png'
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const Hero = () => {
   return (
-    <div className='hero'>
-        <div className="hero-desc">
+    <div id='top' className='hero'>
+        <div className='hero-content'>
+          <div className="hero-desc">
             <h1>Heyo! I'm Jen 
               <span>👋🏻</span>
             </h1>
@@ -16,9 +18,14 @@ const Hero = () => {
                 <div className="hero-connect">Connect With Me!</div>
                 <div className="hero-resume">My Resume</div>
             </div>
+          </div>
+          <img class="animate__animated animate__zoomIn"
+          src={profile_img} width="500px" height="500px"/>
         </div>
-        <img class="animate__animated animate__zoomIn"
-         src={profile_img} width="500px" height="500px"/>
+        
+        <div class="scrollButton">
+          <AnchorLink className='anchor-link' href='#about'><p class="scrollIcon"> ↓ </p></AnchorLink>
+        </div>
     </div>
   )
 }

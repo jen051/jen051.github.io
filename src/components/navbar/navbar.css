@@ -1,11 +1,18 @@
-.navbar{
-    display:flex;
+.navbar {
+    display: flex;
     align-self: flex-end;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
-    margin: 5px 20px
+    margin: 5px 20px;
+    z-index: 1000;
+    /* keep it on top of other content */
+    background: #000;
+    /* make sure it has a solid background */
+    position: sticky;
+    top: 0;
 }
-.nav-menu{
+
+.nav-menu {
     display: flex;
     align-items: center;
     list-style: none;
@@ -13,21 +20,15 @@
     font-size: 20px;
     transition: 0.5s;
 }
-.nav-menu li:hover{
-    text-decoration:underline;
+
+.nav-menu li:hover {
+    text-decoration: underline;
     text-decoration-color: #39A0ED;
     text-decoration-style: wavy;
     transform: scale(1.05);
 }
 
-/* .nav-connect{
-    padding: 15px 35px;
-    border-radius: 50px;
-    background: linear-gradient(267deg, #c84630 0.5%, #39A0ED 100%);
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.5s;
+.anchor-link {
+    text-decoration: none;
+    color: white;
 }
-.nav-connect:hover{
-    transform: scale(1.05);
-} */
