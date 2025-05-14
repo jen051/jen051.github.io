@@ -8,6 +8,8 @@ const Hero = () => {
   return (
     <div id='top' className='hero'>
         <div className='hero-content'>
+          <img class="animate__animated animate__zoomIn"
+          src={profile_img} width="500px" height="500px"/>
           <div className="hero-desc">
             <h1>Heyo! I'm Jen 
               <span>👋🏻</span>
@@ -19,11 +21,9 @@ const Hero = () => {
                 <div className="hero-resume">My Resume</div>
             </div>
           </div>
-          <img class="animate__animated animate__zoomIn"
-          src={profile_img} width="500px" height="500px"/>
         </div>
         
-        <div class="scrollButton">
+        <div id ='about' class="scrollButton">
           <AnchorLink className='anchor-link' href='#about'><p class="scrollIcon"> ↓ </p></AnchorLink>
         </div>
     </div>

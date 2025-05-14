@@ -111,14 +111,14 @@
     flex-direction: column;
     /* font-size: 40px; */
     font-weight: 600;
-    transform:scale(2)
+    transform: scale(2)
 }
 
 .scrollIcon {
     display: inline-block;
     position: relative;
     animation: 2.5s scrollIcon infinite;
-    color:#9AD8FF;
+    color: #9AD8FF;
 }
 
 @keyframes scrollIcon {
@@ -137,7 +137,114 @@
     }
 }
 
-.anchor-link {
-    text-decoration: none;
-    color: white;
+/* ──────────────────────────────────────────────────────────────────────── */
+/* Responsive tweaks                                           */
+/* ──────────────────────────────────────────────────────────────────────── */
+
+/* 1) Tablet down: stack image + text, shrink margins */
+@media (max-width: 1024px) {
+    .hero {
+        align-items: center;
+        margin: 5% 3%;
+        flex-direction: column;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .hero img {
+        align-items: center;
+        max-width: 80%;
+        /* don’t overflow */
+        height: auto;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* 2) Phablet / large phone: scale headings & paragraphs */
+@media (max-width: 768px) {
+    .hero {
+        margin: 8% 5%;
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        /* was 60px */
+        width: 100%;
+    }
+
+    .hero h2 {
+        font-size: 1.1rem;
+        /* was 20px */
+        width: 100%;
+    }
+
+    .hero p {
+        font-size: 1.125rem;
+        /* was 24px */
+        width: 100%;
+        line-height: 1.4;
+    }
+
+    .hero-action {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 2rem;
+    }
+
+    .hero-connect,
+    .hero-resume {
+        width: fit-content;
+        padding: 12px 28px;
+        font-size: 1rem;
+    }
+}
+
+/* 3) Phone: full-width buttons & even smaller text */
+@media (max-width: 480px) {
+    .hero {
+        margin: 10% 3%;
+        gap: 20px;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .hero-content {
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 2.25rem;
+        /* ~36px */
+    }
+
+    .hero h2 {
+        font-size: 1rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .hero-action {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .hero-connect,
+    .hero-resume {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+
+    .scrollButton {
+        transform: scale(1.6);
+    }
 }

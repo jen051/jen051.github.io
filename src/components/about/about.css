@@ -16,9 +16,10 @@
 
 .about h1 {
     text-align: left;
+    width: 30%;
     font-size: 50px;
     font-weight: 600;
-    background: linear-gradient(267deg, #ff5a3d 0.5%, #39A0ED 130%);
+    background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -46,7 +47,7 @@
     -webkit-text-fill-color: #9AD8FF;
 }
 
-.cs-interests {
+.skills {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
@@ -55,11 +56,19 @@
     list-style: none;
 }
 
-.cs-interests li {
-    border: 2px solid #9AD8FF;
+.skills li {
+    /* border: 2px solid #9AD8FF; */
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-size: 20px;
+}
+
+.languages {
+    border: 2px solid #39A0ED;
+}
+
+.libraries {
+    border: 2px solid #9AD8FF;
 }
 
 .interests {
@@ -70,6 +79,7 @@
     /* adjust to match your font-size + line-height */
     overflow: hidden;
     margin-top: 5px;
+    margin-bottom: 5px;
     padding: 0;
     list-style: none;
 }
@@ -91,4 +101,105 @@
 .interests li.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ──────────────────────────────────────────────────────────────────────── */
+/* Responsive tweaks for .about section                                   */
+/* ──────────────────────────────────────────────────────────────────────── */
+
+/* 1) Desktop → Tablet */
+@media (max-width: 1024px) {
+  .about {
+    flex-direction: column;
+    gap: 40px;             /* less horizontal space */
+    margin: 5% 3%;
+  }
+
+  .about img {
+    max-width: 0%;        /* scale the image down */
+    height: auto;
+    margin: 0 auto;        /* center it */
+  }
+
+  .about h1 {
+    width: 100%;
+    font-size: 3.5rem;     /* ~56px */
+  }
+
+  .about h2 {
+    font-size: 2.5rem;     /* ~40px */
+  }
+
+  .about p {
+    font-size: 1.125rem;   /* ~18px */
+    line-height: 1.5;
+  }
+
+  .skills {
+    justify-content: center;
+  }
+
+  .skills li {
+    font-size: 1rem;       /* ~16px */
+  }
+}
+
+/* 2) Tablet → Phablet */
+@media (max-width: 768px) {
+  .about {
+    margin: 8% 5%;
+    gap: 30px;
+  }
+
+  .about h1 {
+    font-size: 2.75rem;    /* ~44px */
+  }
+
+  .about h2 {
+    font-size: 2rem;       /* ~32px */
+  }
+
+  .about p {
+    font-size: 1rem;       /* ~16px */
+    line-height: 1.4;
+  }
+
+  .skills li {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;     /* ~14px */
+  }
+}
+
+/* 3) Phablet → Mobile */
+@media (max-width: 480px) {
+  .about {
+    margin: 10% 3%;
+    gap: 20px;
+  }
+
+  .about h1 {
+    font-size: 2rem;       /* ~32px */
+  }
+
+  .about h2 {
+    font-size: 1.5rem;     /* ~24px */
+  }
+
+  .about p {
+    font-size: 0. 9​5rem;  /* ~14px */
+  }
+
+  .skills {
+    gap: 0.4rem 0.8rem;
+  }
+
+  .skills li {
+    font-size: 0.85rem;    /* ~13px */
+    padding: 0.3rem 0.6rem;
+  }
+
+  .interests {
+    font-size: 0.95rem;    /* ~13px */
+    height: 2rem;
+  }
 }
