@@ -22,7 +22,6 @@ const Navbar = () => {
         <li><AnchorLink className='anchor-link' href='#resume'><p onClick={() => setmenu('resume')}>Resume</p>{menu === 'resume'}</AnchorLink></li>
         <li><AnchorLink className='anchor-link' href='#contact'><p onClick={() => setmenu('contact')}>Contact</p>{menu === 'contact'}</AnchorLink></li>
       </ul>
-      {/* <div className='nav-connect'>Connect With Me</div> */}
     </div>
   )
 }

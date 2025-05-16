@@ -1,5 +1,9 @@
 import React from 'react'
 import './contact.css'
+import github_icon from '../../assets/icons/github.png'
+import linkedin_icon from '../../assets/icons/linkedin.png'
+import mail_icon from '../../assets/icons/mail.png'
+
 
 const Contact = () => {
     const [result, setResult] = React.useState("");
@@ -26,22 +30,31 @@ const Contact = () => {
             setResult(data.message);
         }
     };
-    
+
     return (
-        <div id='contact' className='contact'>
+        <div className='contact'>
             <div className="contact-desc">
                 <h1>Let's Talk!</h1>
                 <p>I'm currently open to work as well as new projects. Feel free to reach out any time!</p>
+                <form className='contact-form' onSubmit={onSubmit}>
+                    <label htmlFor="">Your Name</label>
+                    <input type="text" placeholder='Enter your name' name='name' />
+                    <label htmlFor="">Your Email</label>
+                    <input type="email" placeholder='Enter your email' name='email' />
+                    <label htmlFor="">Write your message here</label>
+                    <textarea name='message' rows="8" placeholder='Enter your message'></textarea>
+                    <button type="submit" className='contact-submit'>Submit</button>
+                </form>
             </div>
-            <form className='contact-form' onSubmit={onSubmit}>
-                <label htmlFor="">Your Name</label>
-                <input type="text" placeholder='Enter your name' name='name' />
-                <label htmlFor="">Your Email</label>
-                <input type="email" placeholder='Enter your email' name='email' />
-                <label htmlFor="">Write your message here</label>
-                <textarea name='message' rows="8" placeholder='Enter your message'></textarea>
-                <button type="submit" className='contact-submit'>Submit</button>
-            </form>
+
+            <div className="contact-links">
+                <h1>Connect With Me</h1>
+                <div className="contact-icons">
+                    <a href="mailto:someone@example.com"><img src={mail_icon} alt="" /></a>
+                    <a href="https://www.linkedin.com/in/jenjiang5/" target="_blank"><img src={linkedin_icon} alt="" /></a>
+                    <a href="https://github.com/jen051" target="_blank"><img src={github_icon} alt="" /></a>
+                </div>
+            </div>
         </div>
     )
 }

@@ -118,7 +118,6 @@
     display: inline-block;
     position: relative;
     animation: 2.5s scrollIcon infinite;
-    color: #9AD8FF;
 }
 
 @keyframes scrollIcon {

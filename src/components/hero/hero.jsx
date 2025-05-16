@@ -7,25 +7,25 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 const Hero = () => {
   return (
     <div id='top' className='hero'>
-        <div className='hero-content'>
-          <img class="animate__animated animate__zoomIn"
-          src={profile_img} width="500px" height="500px"/>
-          <div className="hero-desc">
-            <h1>Heyo! I'm Jen 
-              <span>👋🏻</span>
-            </h1>
-            <h2>or Jenni/Jennifer :)</h2>
-            <p>I'm a computer science student at <a href="https://gatech.edu">Georgia Tech</a> graduating with my Bachelors in Computer Science in Dec 2026.</p>
-            <div className="hero-action">
-                <div className="hero-connect">Connect With Me!</div>
-                <div className="hero-resume">My Resume</div>
-            </div>
+      <div className='hero-content'>
+        <img class="animate__animated animate__zoomIn"
+          src={profile_img} width="500px" height="500px" />
+        <div className="hero-desc">
+          <h1>Heyo! I'm Jen
+            <span>👋🏻</span>
+          </h1>
+          <h2>or Jenni/Jennifer :)</h2>
+          <p>I'm a computer science student at <a href="https://gatech.edu">Georgia Tech</a> graduating with my Bachelors in Computer Science in Dec 2026.</p>
+          <div className="hero-action">
+            <div className="hero-connect"><AnchorLink className='anchor-link' href='#contact'>Connect With Me!</AnchorLink></div>
+            <div className="hero-resume">My Resume</div>
           </div>
         </div>
-        
-        <div id ='about' class="scrollButton">
-          <AnchorLink className='anchor-link' href='#about'><p class="scrollIcon"> ↓ </p></AnchorLink>
-        </div>
+      </div>
+
+      <div id='about' class="scrollButton">
+        <AnchorLink className='anchor-link' href='#about'><p class="scrollIcon"> ↓ </p></AnchorLink>
+      </div>
     </div>
   )
 }

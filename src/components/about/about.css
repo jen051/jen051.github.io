@@ -1,106 +1,146 @@
 .about {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 80px;
-    margin: 5% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  margin: 5% 5%;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px
 }
 
 .about-desc {
-    display: flex;
-    align-items: left;
-    flex-direction: column;
-    gap: 10px
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  gap: 10px
 }
 
 .about h1 {
-    text-align: left;
-    width: 30%;
-    font-size: 50px;
-    font-weight: 600;
-    background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  text-align: left;
+  width: 30%;
+  font-size: 50px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .about h2 {
-    text-align: left;
-    font-size: 30px;
-    font-weight: 600;
-    background: linear-gradient(267deg, #ff5a3d 0.5%, #39A0ED 110%);
-    margin-top: 2%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  text-align: left;
+  font-size: 30px;
+  font-weight: 600;
+  background: linear-gradient(267deg, #ff5a3d 0.5%, #39A0ED 110%);
+  margin-top: 2%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .about p {
-    color: white;
-    text-align: left;
-    font-size: 20px;
-    line-height: 30px;
+  color: white;
+  text-align: left;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .about p span {
-    -webkit-text-fill-color: #9AD8FF;
+  -webkit-text-fill-color: #9AD8FF;
 }
 
 .skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    padding: 0;
-    margin-top: 5px;
-    list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0;
+  margin-top: 5px;
+  list-style: none;
 }
 
 .skills li {
-    /* border: 2px solid #9AD8FF; */
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    font-size: 20px;
+  /* border: 2px solid #9AD8FF; */
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 20px;
 }
 
 .languages {
-    border: 2px solid #39A0ED;
+  border: 2px solid #39A0ED;
 }
 
 .libraries {
-    border: 2px solid #9AD8FF;
+  border: 2px solid #9AD8FF;
 }
 
 .interests {
-    color: white;
-    font-size: 20px;
-    position: relative;
-    height: 2.4rem;
-    /* adjust to match your font-size + line-height */
-    overflow: hidden;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 0;
-    list-style: none;
+  color: white;
+  font-size: 20px;
+  position: relative;
+  height: 2.4rem;
+  /* adjust to match your font-size + line-height */
+  overflow: hidden;
+  margin-top: 5px;
+  /* margin-bottom: 5px; */
+  padding: 0;
+  list-style: none;
 }
 
 /* 2) All items are stacked and hidden by default */
 .interests li {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* 3) The “active” item fades/slides into view */
 .interests li.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+  transform: scale(2);
+  color: #9AD8FF;
+}
+
+.scrollButton .scrollIcon {
+  display: inline-block;
+  position: relative;
+  animation: 2.5s scrollIcon infinite;
+  color: #9AD8FF;
+}
+
+@keyframes scrollIcon {
+  0% {
+    opacity: 0;
+    top: 0;
+  }
+
+  50% {
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    top: 15px;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────────────── */
@@ -111,27 +151,33 @@
 @media (max-width: 1024px) {
   .about {
     flex-direction: column;
-    gap: 40px;             /* less horizontal space */
+    gap: 40px;
+    /* less horizontal space */
     margin: 5% 3%;
   }
 
   .about img {
-    max-width: 0%;        /* scale the image down */
+    max-width: 0%;
+    /* scale the image down */
     height: auto;
-    margin: 0 auto;        /* center it */
+    margin: 0 auto;
+    /* center it */
   }
 
   .about h1 {
     width: 100%;
-    font-size: 3.5rem;     /* ~56px */
+    font-size: 3.5rem;
+    /* ~56px */
   }
 
   .about h2 {
-    font-size: 2.5rem;     /* ~40px */
+    font-size: 2.5rem;
+    /* ~40px */
   }
 
   .about p {
-    font-size: 1.125rem;   /* ~18px */
+    font-size: 1.125rem;
+    /* ~18px */
     line-height: 1.5;
   }
 
@@ -140,7 +186,8 @@
   }
 
   .skills li {
-    font-size: 1rem;       /* ~16px */
+    font-size: 1rem;
+    /* ~16px */
   }
 }
 
@@ -152,21 +199,25 @@
   }
 
   .about h1 {
-    font-size: 2.75rem;    /* ~44px */
+    font-size: 2.75rem;
+    /* ~44px */
   }
 
   .about h2 {
-    font-size: 2rem;       /* ~32px */
+    font-size: 2rem;
+    /* ~32px */
   }
 
   .about p {
-    font-size: 1rem;       /* ~16px */
+    font-size: 1rem;
+    /* ~16px */
     line-height: 1.4;
   }
 
   .skills li {
     padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;     /* ~14px */
+    font-size: 0.9rem;
+    /* ~14px */
   }
 }
 
@@ -178,15 +229,18 @@
   }
 
   .about h1 {
-    font-size: 2rem;       /* ~32px */
+    font-size: 2rem;
+    /* ~32px */
   }
 
   .about h2 {
-    font-size: 1.5rem;     /* ~24px */
+    font-size: 1.5rem;
+    /* ~24px */
   }
 
   .about p {
-    font-size: 0. 9​5rem;  /* ~14px */
+    font-size: 0. 9​5rem;
+    /* ~14px */
   }
 
   .skills {
@@ -194,12 +248,18 @@
   }
 
   .skills li {
-    font-size: 0.85rem;    /* ~13px */
+    font-size: 0.85rem;
+    /* ~13px */
     padding: 0.3rem 0.6rem;
   }
 
   .interests {
-    font-size: 0.95rem;    /* ~13px */
+    font-size: 0.95rem;
+    /* ~13px */
     height: 2rem;
+  }
+
+  .scrollButton {
+    transform: scale(1.6);
   }
 }
