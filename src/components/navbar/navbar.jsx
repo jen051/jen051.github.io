@@ -19,7 +19,6 @@ const Navbar = () => {
         <li><AnchorLink className='anchor-link' href='#top'><p onClick={() => setmenu('home')}>Home</p>{menu === 'home'}</AnchorLink></li>
         <li><AnchorLink className='anchor-link' href='#about'><p onClick={() => setmenu('about')}>About Me</p>{menu === 'about'}</AnchorLink></li>
         <li><AnchorLink className='anchor-link' href='#projects'><p onClick={() => setmenu('projects')}>Projects</p>{menu === 'projects'}</AnchorLink></li>
-        <li><AnchorLink className='anchor-link' href='#resume'><p onClick={() => setmenu('resume')}>Resume</p>{menu === 'resume'}</AnchorLink></li>
         <li><AnchorLink className='anchor-link' href='#contact'><p onClick={() => setmenu('contact')}>Contact</p>{menu === 'contact'}</AnchorLink></li>
       </ul>
     </div>

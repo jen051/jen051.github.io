@@ -92,14 +92,17 @@
     cursor: pointer;
 }
 
+.hero-resume a{
+    color: white;
+    text-decoration: none;
+}
+
 .hero-connect:hover {
     border: 2px solid #39A0ED;
-    color: #9AD8FF;
     transform: scale(1.05);
 }
 
 .hero-resume:hover {
-    color: #9AD8FF;
     border: 2px solid #39A0ED;
     transform: scale(1.05);
 }

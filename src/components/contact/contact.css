@@ -99,7 +99,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem auto 2rem;
+  margin: 1rem auto 2rem;
   padding: 0 1rem;
 }
 
@@ -132,6 +132,69 @@
 .contact-links a:hover img,
 .contact-links a:focus img {
   transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .contact {
+    padding: 1rem 1rem;
+    flex-direction: column;
+    /* more breathing room top/bottom */
+  }
+
+  .contact-desc h1 {
+    font-size: 2.5rem;
+    /* was 3.5rem */
+  }
+
+  .contact-desc p {
+    font-size: 1rem;
+    /* was 1.25rem */
+  }
+
+  .contact-form {
+    width: 90%;
+    /* almost full-width */
+    gap: 1rem;
+    /* tighter vertical spacing */
+  }
+
+  .contact-form label {
+    font-size: 0.95rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem;
+    /* slightly smaller inputs */
+  }
+
+  .contact-submit {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-links {
+    margin: 0rem auto 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .contact-links h1 {
+    font-size: 2.5rem;
+    /* was 3rem */
+    margin-bottom: 1.25rem;
+    /* slightly less space */
+  }
+
+  .contact-links a {
+    margin: 0 0.75rem;
+    /* tighten the horizontal gutters */
+  }
+
+  .contact-links img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────────────── */
@@ -178,7 +241,7 @@
   }
 
   .contact-links {
-    margin: 2rem auto 1.5rem;
+    margin: 0rem auto 1.5rem;
     padding: 0 0.5rem;
   }
 
@@ -246,7 +309,7 @@
   }
 
   .contact-links {
-    margin: 1.5rem auto 1rem;
+    margin: 0 auto 1rem;
   }
 
   .contact-links h1 {
