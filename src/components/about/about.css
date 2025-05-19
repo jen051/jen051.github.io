@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 80px;
   margin: 5% 5%;
 }
 
@@ -11,19 +10,20 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 20px
+  gap: 20px;
 }
 
 .about-desc {
   display: flex;
   align-items: left;
   flex-direction: column;
-  gap: 10px
+  gap: 10px;
 }
 
 .about h1 {
   text-align: left;
-  width: 30%;
+  align-self: left;
+  width: fit-content;
   font-size: 50px;
   font-weight: 600;
   background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
@@ -34,9 +34,11 @@
 
 .about h2 {
   text-align: left;
+  align-self: left;
+  width: fit-content;
   font-size: 30px;
   font-weight: 600;
-  background: linear-gradient(267deg, #ff5a3d 0.5%, #39A0ED 110%);
+  background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
   margin-top: 2%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -110,39 +112,6 @@
   transform: translateY(0);
 }
 
-.scrollButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-weight: 600;
-  transform: scale(2);
-  color: #9AD8FF;
-}
-
-.scrollButton .scrollIcon {
-  display: inline-block;
-  position: relative;
-  animation: 2.5s scrollIcon infinite;
-  color: #9AD8FF;
-}
-
-@keyframes scrollIcon {
-  0% {
-    opacity: 0;
-    top: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    top: 15px;
-  }
-}
-
 /* ──────────────────────────────────────────────────────────────────────── */
 /* Responsive tweaks for .about section                                   */
 /* ──────────────────────────────────────────────────────────────────────── */
@@ -151,7 +120,6 @@
 @media (max-width: 1024px) {
   .about {
     flex-direction: column;
-    gap: 40px;
     /* less horizontal space */
     margin: 5% 3%;
   }
@@ -194,7 +162,7 @@
 /* 2) Tablet → Phablet */
 @media (max-width: 768px) {
   .about {
-    margin: 8% 5%;
+    margin: 8% 1.5rem;
     gap: 30px;
   }
 
@@ -224,7 +192,7 @@
 /* 3) Phablet → Mobile */
 @media (max-width: 480px) {
   .about {
-    margin: 10% 3%;
+    margin: 10% 1.5rem;
     gap: 20px;
   }
 

@@ -2,13 +2,10 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 3%;
-    margin-left: 5%;
 }
 
 .hero img {
-    margin-right: 5%;
+    margin: 0 5%;
 }
 
 .hero-content {
@@ -26,11 +23,12 @@
 }
 
 .hero h1 {
+    align-self: left;
+    width: fit-content;
     text-align: left;
-    width: 80%;
     font-size: 60px;
     font-weight: 600;
-    background: linear-gradient(267deg, #c84630 0.5%, #39A0ED 100%);
+    background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -92,7 +90,7 @@
     cursor: pointer;
 }
 
-.hero-resume a{
+.hero-resume a {
     color: white;
     text-decoration: none;
 }
@@ -108,19 +106,19 @@
 }
 
 .scrollButton {
-    display: flex;
+    display: inline-flex;
+    max-width: 100%;
+    align-self: center;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* font-size: 40px; */
-    font-weight: 600;
-    transform: scale(2)
+    margin: 1rem auto 0;
+    transform: none;
 }
 
-.scrollIcon {
-    display: inline-block;
-    position: relative;
+.scrollButton .scrollIcon {
+    font-size: 2.5rem;
+    font-weight: 600;
     animation: 2.5s scrollIcon infinite;
+    color: #9AD8FF;
 }
 
 @keyframes scrollIcon {
@@ -154,7 +152,7 @@
     .hero-content {
         flex-direction: column;
         align-items: center;
-        gap: 40px;
+        /* gap: 40px; */
     }
 
     .hero img {
@@ -171,7 +169,7 @@
 /* 2) Phablet / large phone: scale headings & paragraphs */
 @media (max-width: 768px) {
     .hero {
-        margin: 8% 5%;
+        margin: 8% 1.5rem;
         gap: 30px;
     }
 
@@ -211,7 +209,7 @@
 /* 3) Phone: full-width buttons & even smaller text */
 @media (max-width: 480px) {
     .hero {
-        margin: 10% 3%;
+        margin: 10% 1.5rem;
         gap: 20px;
         align-items: center;
         flex-direction: column;
@@ -246,7 +244,7 @@
         padding: 12px 0;
     }
 
-    .scrollButton {
-        transform: scale(1.6);
+    .scrollButton .scrollIcon {
+        font-size: 1.5rem;
     }
 }

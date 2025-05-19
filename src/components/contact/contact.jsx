@@ -33,8 +33,11 @@ const Contact = () => {
 
     return (
         <div className='contact'>
+
             <div className="contact-desc">
-                <h1>Let's Talk!</h1>
+                <div className="contact-heading">
+                    <h1>Let's Talk!</h1>
+                </div>
                 <p>I'm currently open to work as well as new projects. Feel free to reach out any time!</p>
                 <form className='contact-form' onSubmit={onSubmit}>
                     <label htmlFor="">Your Name</label>

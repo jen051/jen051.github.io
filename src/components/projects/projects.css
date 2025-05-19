@@ -1,0 +1,98 @@
+/* projects.css */
+
+/* 1) Section wrapper */
+.projects {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 2.5rem;
+}
+
+.projects-heading {
+    align-items: center;
+    align-self: center;
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+
+.projects h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 2) Center & constrain content */
+.projects-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.project-card .project-title {
+  margin-top: 0.75rem;        /* space below the image */
+  font-size: 1.5rem;          /* ~24px */
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* 2) Short description below the title */
+.project-card .project-desc {
+  margin-top: 0.5rem;         /* a little gap under the title */
+  font-size: 1rem;            /* ~16px */
+  font-weight: 400;
+  color: #cccccc;             /* lighter grey */
+  line-height: 1.5;
+  max-width: 90%;             /* don’t let it run full width on large cards */
+}
+
+/* 4) Project thumbnails */
+.projects-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projects-content img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 1024px) {
+    .projects-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects {
+        padding: 3rem 0.5rem;
+    }
+
+    .projects-content {
+        gap: 1rem;
+    }
+}

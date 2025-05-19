@@ -60,8 +60,8 @@ const About = () => {
                 <img src={about_img} width='450px' height='600px' />
             </div>
 
-            <div id='contact' className="scrollButton">
-                <AnchorLink className='anchor-link' href='#contact'><p className="scrollIcon"> ↓ </p></AnchorLink>
+            <div id='projects' className="scrollButton">
+                <AnchorLink className='anchor-link' href='#projects'><p className="scrollIcon"> ↓ </p></AnchorLink>
             </div>
         </div>
     )
