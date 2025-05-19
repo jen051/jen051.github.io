@@ -21,25 +21,25 @@ const projects_data = [
         idx: 3,
         proj_name: "Robotic Registers",
         proj_img: rr_img,
-        proj_desc: ""
+        proj_desc: "GAN model that creates valid digital logic circuits"
     },
     {
         idx: 4,
         proj_name: "32-bit Datapath",
-        proj_img:datapath_img,
-        proj_desc:""
+        proj_img: datapath_img,
+        proj_desc: "Functional datapath built from scratch in CircuitSim"
     },
     {
         idx: 5,
         proj_name: "Quantum",
-        proj_img:quantum_img,
-        proj_desc:""
+        proj_img: quantum_img,
+        proj_desc: "2-player 2D platformer game"
     },
     {
         idx: 6,
-        proj_name: "Book Recommender",
-        proj_img:bookrec_img,
-        proj_desc:""
+        proj_name: "Bookshelf",
+        proj_img: bookrec_img,
+        proj_desc: "Book review app with customized book recommendations built in Java "
     }
 ]
 export default projects_data
