@@ -1,14 +1,8 @@
-/* contact.css */
-
-/* 1) Outer wrapper */
 .contact {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0rem 1rem;
-  margin: 0% 2%;
-  background: #0b0f23;
-  color: #f5f5f5;
+  margin: 0% 5%;
 }
 
 .contact-desc {
@@ -16,15 +10,16 @@
 }
 
 .contact-heading {
-  margin: 0rem auto 3rem;
+  margin: 0rem auto 1rem;
   max-width: 600px;
   width: fit-content;
   align-items: center;
 }
 
-.contact-heading h1 {
+.contact-heading h1,
+.contact-links h1 {
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 50px;
   font-weight: 600;
   background: linear-gradient(90deg, #39A0ED 0.5%, #ff5a3d 130%);
   background-clip: text;
@@ -36,9 +31,9 @@
   font-size: 1.25rem;
   font-weight: 200;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
-/* 4) Form layout */
 .contact-form {
   max-width: 600px;
   width: 75%;
@@ -48,14 +43,11 @@
   gap: 0.75rem;
 }
 
-/* 5) Labels */
 .contact-form label {
   font-weight: 200;
-  /* margin-bottom: 0.rem; */
   display: block;
 }
 
-/* 6) Inputs & textarea */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -69,7 +61,6 @@
   resize: vertical;
   transition: border-color 0.3s, box-shadow 0.3s;
   justify-self: center;
-  /* center within the form grid */
 }
 
 .contact-form input:focus,
@@ -79,11 +70,9 @@
   outline: none;
 }
 
-/* 7) Submit button */
 .contact-submit {
   justify-self: center;
   width: 100%;
-  /* align button to the left */
   padding: 0.75rem 2rem;
   background-color: #001021;
   border: 1px solid #39A0ED;
@@ -103,22 +92,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1rem auto 2rem;
-  padding: 0 1rem;
-}
-
-/* 2) Heading */
-.contact-links h1 {
-  align-self: center;
-  width: fit-content;
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  text-align: center;
-  background: linear-gradient(90deg, #39A0ED 0.1%, #c84630 150%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin: 1rem auto;
 }
 
 .contact-links a {
@@ -130,11 +104,9 @@
 .contact-links img {
   display: block;
   width: 48px;
-  /* base size */
   height: 48px;
 }
 
-/* 4) Hover/focus effects */
 .contact-links a:hover img,
 .contact-links a:focus img {
   transform: scale(1.1);
@@ -144,7 +116,6 @@
   .contact {
     padding: 1rem 1rem;
     flex-direction: column;
-    /* more breathing room top/bottom */
   }
 
   .contact-desc {
@@ -153,19 +124,15 @@
 
   .contact-heading h1 {
     font-size: 2.5rem;
-    /* was 3.5rem */
   }
 
   .contact-desc p {
     font-size: 1rem;
-    /* was 1.25rem */
   }
 
   .contact-form {
     width: 90%;
-    /* almost full-width */
     gap: 1rem;
-    /* tighter vertical spacing */
   }
 
   .contact-form label {
@@ -176,7 +143,6 @@
   .contact-form textarea {
     font-size: 0.95rem;
     padding: 0.6rem 0.8rem;
-    /* slightly smaller inputs */
   }
 
   .contact-submit {
@@ -191,14 +157,11 @@
 
   .contact-links h1 {
     font-size: 2.5rem;
-    /* was 3rem */
     margin-bottom: 1.25rem;
-    /* slightly less space */
   }
 
   .contact-links a {
     margin: 0 0.75rem;
-    /* tighten the horizontal gutters */
   }
 
   .contact-links img {
@@ -207,103 +170,13 @@
   }
 }
 
-/* ──────────────────────────────────────────────────────────────────────── */
-/* Responsive: Tablet & smaller (≤768px)                                  */
-/* ──────────────────────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .contact {
-    padding: 1rem 1.5rem;
-    flex-direction: column;
-    /* more breathing room top/bottom */
-  }
-
-  .contact-desc {
-    width: auto
-  }
-
-  .contact-heading h1 {
-    font-size: 2.5rem;
-    /* was 3.5rem */
-  }
-
-  .contact-desc p {
-    font-size: 1rem;
-    /* was 1.25rem */
-  }
-
-  .contact-form {
-    width: 90%;
-    /* almost full-width */
-    gap: 1rem;
-    /* tighter vertical spacing */
-  }
-
-  .contact-form label {
-    font-size: 0.95rem;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 0.95rem;
-    padding: 0.6rem 0.8rem;
-    /* slightly smaller inputs */
-  }
-
-  .contact-submit {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.95rem;
-  }
-
-  .contact-links {
-    margin: 0rem auto 1.5rem;
-    padding: 0 0.5rem;
-  }
-
-  .contact-links h1 {
-    font-size: 2.5rem;
-    /* was 3rem */
-    margin-bottom: 1.25rem;
-    /* slightly less space */
-  }
-
-  .contact-links a {
-    margin: 0 0.75rem;
-    /* tighten the horizontal gutters */
-  }
-
-  .contact-links img {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* ──────────────────────────────────────────────────────────────────────── */
-/* Responsive: Phone & smaller (≤480px)                                   */
-/* ──────────────────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
-  .contact {
-    padding: 1rem 1.5rem;
-  }
-
-  .contact-desc{
-    width: auto
-  }
-
   .contact-desc h1 {
     font-size: 2rem;
-    /* was 2.5rem */
-  }
-
-  .contact-desc p {
-    font-size: 0.9rem;
-    /* was 1rem */
   }
 
   .contact-form {
-    width: 90%;
-    /* full width on super-narrow screens */
     gap: 0.75rem;
-    /* even tighter spacing */
   }
 
   .contact-form label {
@@ -314,30 +187,21 @@
   .contact-form textarea {
     font-size: 0.9rem;
     padding: 0.5rem;
-    /* compact inputs */
   }
 
   .contact-submit {
     width: 100%;
-    /* full-width button */
     padding: 0.75rem 0;
     font-size: 1rem;
     justify-self: center;
-    /* center within the form grid */
-  }
-
-  .contact-links {
-    margin: 0 auto 1rem;
   }
 
   .contact-links h1 {
     font-size: 2rem;
-    /* was 2.5rem */
   }
 
   .contact-links a {
     margin: 0.5rem;
-    /* equal margin all around for a more balanced column */
   }
 
   .contact-links img {

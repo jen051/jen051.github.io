@@ -38,7 +38,8 @@
     -webkit-text-fill-color: white;
 }
 
-.hero h2 {
+.hero h2,
+.hero p {
     text-align: left;
     width: 80%;
     font-size: 20px;
@@ -46,17 +47,11 @@
 }
 
 .hero p {
-    width: 85%;
-    text-align: left;
     font-size: 24px;
     line-height: 30px;
 }
 
-.hero p a:link {
-    color: #9AD8FF;
-    text-decoration: none;
-}
-
+.hero p a:link,
 .hero p a:visited {
     color: #9AD8FF;
     text-decoration: none;
@@ -76,13 +71,7 @@
     margin-bottom: 25px;
 }
 
-.hero-connect {
-    padding: 15px 35px;
-    border-radius: 50px;
-    border: 2px solid #9AD8FF;
-    cursor: pointer;
-}
-
+.hero-connect,
 .hero-resume {
     padding: 15px 35px;
     border-radius: 50px;
@@ -95,11 +84,7 @@
     text-decoration: none;
 }
 
-.hero-connect:hover {
-    border: 2px solid #39A0ED;
-    transform: scale(1.05);
-}
-
+.hero-connect:hover,
 .hero-resume:hover {
     border: 2px solid #39A0ED;
     transform: scale(1.05);
@@ -137,11 +122,6 @@
     }
 }
 
-/* ──────────────────────────────────────────────────────────────────────── */
-/* Responsive tweaks                                           */
-/* ──────────────────────────────────────────────────────────────────────── */
-
-/* 1) Tablet down: stack image + text, shrink margins */
 @media (max-width: 1024px) {
     .hero {
         align-items: center;
@@ -152,25 +132,27 @@
     .hero-content {
         flex-direction: column;
         align-items: center;
-        /* gap: 40px; */
     }
 
     .hero img {
         align-items: center;
         max-width: 80%;
-        /* don’t overflow */
         height: auto;
-        margin-right: 0;
-        margin-left: 0;
-        margin-bottom: 1.5rem;
+        margin: 0 0 1.5rem;
     }
 }
 
-/* 2) Phablet / large phone: scale headings & paragraphs */
 @media (max-width: 768px) {
     .hero {
-        margin: 8% 1.5rem;
+        padding: 0 1rem;
         gap: 30px;
+    }
+
+
+    .hero h1,
+    .hero h2,
+    .hero p {
+        text-align: center;
     }
 
     .hero h1 {

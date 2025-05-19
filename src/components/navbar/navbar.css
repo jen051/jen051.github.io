@@ -3,18 +3,16 @@
   align-self: flex-end;
   align-items: center;
   justify-content: space-between;
-  margin: 0 2%;
   z-index: 1000;
-  /* keep it on top of other content */
+  width: 100%;
   background: #001021;
-  /* make sure it has a solid background */
   position: sticky;
   top: 0;
 }
 
 .navbar img {
   max-height: 60px;
-  /* or whatever fits within your new navbar height */
+  margin-left: 1rem;
 }
 
 .nav-menu {
@@ -24,6 +22,7 @@
   gap: 60px;
   font-size: 20px;
   transition: 0.5s;
+  margin-right: 1rem;
 }
 
 .nav-menu li:hover {
