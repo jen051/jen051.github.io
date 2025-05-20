@@ -1,7 +1,6 @@
 .projects {
     display: flex;
     flex-direction: column;
-    padding: 1rem 1rem 2.5rem;
 }
 
 .projects-heading {
@@ -21,10 +20,8 @@
     -webkit-text-fill-color: transparent;
 }
 
-/* 2) Center & constrain content */
 .projects-content {
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
@@ -35,12 +32,12 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: auto;
 }
 
 .project-card .project-title {
     margin-top: 0.75rem;
     font-size: 1.5rem;
-    /* ~24px */
     font-weight: 600;
     color: #ffffff;
     line-height: 1.2;
