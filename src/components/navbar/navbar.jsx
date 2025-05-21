@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import './navbar.css'
-import logo from '../../assets/logo.png'
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 const Navbar = () => {
   const [menu, setmenu] = useState('top');
   const [open, setOpen] = useState(false);
   return (
     <div className='navbar'>
-      <AnchorLink className='anchor-link' href='#top'><img src={logo} ></img></AnchorLink>
+      <AnchorLink className='anchor-link' href='#top'><h1>Jennifer Jiang</h1></AnchorLink>
       <button class="hamburger" className={`hamburger${open ? ' active' : ''}`}
         onClick={() => setOpen(o => !o)}
         aria-label="Toggle menu">

@@ -10,9 +10,13 @@
   top: 0;
 }
 
-.navbar img {
+.navbar h1 {
   max-height: 60px;
-  margin-left: 1rem;
+  margin: 1rem 1rem;
+  text-decoration: none;
+  color: #39A0ED;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .nav-menu {
