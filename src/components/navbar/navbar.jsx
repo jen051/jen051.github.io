@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <AnchorLink className='anchor-link' href='#top'><h1>Jennifer Jiang</h1></AnchorLink>
-      <button class="hamburger" className={`hamburger${open ? ' active' : ''}`}
+      <button className={`hamburger${open ? ' active' : ''}`}
         onClick={() => setOpen(o => !o)}
         aria-label="Toggle menu">
         <span></span>

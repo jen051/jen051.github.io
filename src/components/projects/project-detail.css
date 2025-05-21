@@ -1,0 +1,32 @@
+/* in projects.css or project-detail.css */
+.project-detail {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+}
+.project-detail h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.project-detail img {
+  width: 100%;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+}
+.project-detail p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.project-detail a {
+  color: #39A0ED;
+  text-decoration: none;
+  font-weight: bold;
+}
+.project-detail a:hover {
+  text-decoration: underline;
+}

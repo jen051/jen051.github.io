@@ -1,14 +1,38 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import './hero.css'
 import 'animate.css';
 import profile_img from '../../assets/profile-img.png'
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const Hero = () => {
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const imgEl = imgRef.current;
+    if (!imgEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // remove then re-add the class to restart the animation
+          imgEl.classList.remove('animate__animated', 'animate__zoomIn');
+          // force reflow
+          // eslint-disable-next-line no-unused-expressions
+          imgEl.offsetWidth;
+          imgEl.classList.add('animate__animated', 'animate__zoomIn');
+        }
+      },
+      { threshold: 0.5 }   // fire when 50% of image is in view
+    );
+
+    observer.observe(imgEl);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div id='top' className='hero'>
       <div className='hero-content'>
-        <img class="animate__animated animate__zoomIn"
+        <img ref={imgRef} className="animate__animated animate__zoomIn"
           src={profile_img} width="500px" height="500px" />
         <div className="hero-desc">
           <h1>Heyo! I'm Jen
@@ -23,8 +47,8 @@ const Hero = () => {
         </div>
       </div>
 
-      <div id='about' class="scrollButton">
-        <AnchorLink className='anchor-link' href='#about'><p class="scrollIcon"> ↓ </p></AnchorLink>
+      <div id='about' className="scrollButton">
+        <AnchorLink className='anchor-link' href='#about'><p className="scrollIcon"> ↓ </p></AnchorLink>
       </div>
     </div>
   )
