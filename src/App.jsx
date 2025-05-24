@@ -4,7 +4,9 @@ import Hero from './components/hero/hero'
 import About from './components/about/about'
 import Contact from './components/contact/contact'
 import Projects from './components/projects/projects'
-import ProjectDetail from './components/projects/projectDetail'
+import ProjectDetail from './components/projects/project-detail'
+import AllProjects from './components/projects/all-projects'
+import ScrollToTop from './ScrollToTop'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const Home = () => (
@@ -19,15 +21,12 @@ const Home = () => (
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
-        {/* Main one-page home */}
         <Route path="/" element={<Home />} />
-
-        {/* Dynamic project detail */}
+        <Route path='projects' element={<AllProjects />}/>
         <Route path="/projects/:projId" element={<ProjectDetail />} />
-
-        {/* (Optional) catch-all 404 could go here */}
       </Routes>
     </Router>
   )

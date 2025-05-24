@@ -18,33 +18,45 @@ const Projects = () => {
     return () => obs.disconnect();
   }, []);
 
+  const previewProjects = projects_data.slice(0, 6);
+
   return (
-    <div className='projects'ref={containerRef}>
+    <div className='projects' ref={containerRef}>
       <div className="projects-heading">
         <h1>My Projects</h1>
       </div>
       <div className="projects-content">
-        {projects_data.map((work) => (
-          // <div key={work.idx} className="project-card">
+        {previewProjects.map((work) => (
           <Link
             key={work.idx}
             to={`/projects/${work.proj_name}`}
             className={`project-card ${inView ? 'visible' : ''}`}
             style={{ '--delay': `${work.idx * 150}ms` }}
-          >
-            {/* <a href={work.proj_link} target='_blank'> */}
-            <img
-              src={work.proj_img}
-              alt={work.proj_name}
-              className="project-image"
-            />
-            {/* </a> */}
+          >{work.proj_video
+              ? (
+                <video
+                  className="project-media"
+                  src={work.proj_video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              )
+              : (
+                <img
+                  src={work.proj_img}
+                  alt={work.proj_name}
+                  className="project-media"
+                />
+              )
+            }
             <h3 className="project-title">{work.proj_name}</h3>
             <p className='project-desc'>{work.proj_desc}</p>
           </Link>
-          // </div>
         ))}
       </div>
+      <Link to={`/projects`} className='projects-btn'>Show more</Link>
       <div id="contact" className="scrollButton">
         <AnchorLink className='anchor-link' href='#contact'><p className="scrollIcon"> ↓ </p></AnchorLink>
       </div>
