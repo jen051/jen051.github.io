@@ -68,14 +68,12 @@
   .nav-menu {
     position: absolute;
     top: 100%;
-    /* just below the navbar */
     left: 0;
     right: 0;
     background: #001021;
     flex-direction: column;
     gap: 0;
     display: none;
-    /* hidden by default */
   }
 
   .nav-menu li {
@@ -87,22 +85,22 @@
   .hamburger {
     display: flex;
   }
-}
 
-/* 3) When .nav-menu has .open, slide it into view */
-.nav-menu.open {
-  display: flex;
-}
+  /* 3) When .nav-menu has .open, slide it into view */
+  .nav-menu.open {
+    display: flex;
+  }
 
-/* 4) Optional: animate hamburger → “X” */
-.hamburger.active span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
+  /* 4) Optional: animate hamburger → “X” */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
 
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
 
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
 }
