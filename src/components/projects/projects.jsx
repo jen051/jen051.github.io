@@ -52,7 +52,7 @@ const Projects = () => {
               )
             }
             <h3 className="project-title">{work.proj_name}</h3>
-            <p className='project-desc'>{work.proj_desc}</p>
+            <p className='project-desc'>{work.proj_summary}</p>
           </Link>
         ))}
       </div>
