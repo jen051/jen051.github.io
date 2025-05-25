@@ -66,26 +66,10 @@
     max-width: 90%;
 }
 
-/* .projects-content img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    object-fit: cover;
-    aspect-ratio: 16/9;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.projects-content img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-} */
-
 .project-media {
   display: block;
   width: 100%;
-  aspect-ratio: 16/9;        /* same ratio for images & videos */
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
