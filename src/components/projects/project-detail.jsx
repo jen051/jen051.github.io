@@ -4,6 +4,7 @@ import projects_data from '../../assets/projects_data.js';
 import './project-detail.css';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import WordleGame from '../wordlegame/wordle.jsx';
 
 export default function ProjectDetail() {
   const { projId } = useParams();
@@ -39,7 +40,8 @@ export default function ProjectDetail() {
     proj_link,
     tech_stack,
     extra_imgs,
-    extra_vids
+    extra_vids,
+    component
   } = project;
 
   return (
@@ -49,17 +51,23 @@ export default function ProjectDetail() {
       <p className="project-summary">{proj_summary}</p>
 
       <div className="project-desc">
-        <ReactMarkdown
-          children={markdown}
-          remarkPlugins={[remarkGfm]}
-          components={{
-            a: ({ node, ...props }) => (
-              <a {...props} target="_blank" rel="noreferrer">
-                {props.children}
-              </a>
-            )
-          }}
-        />
+        {project.component === "wordle" ? (
+          <div className="embedded-wordle">
+            <WordleGame />
+          </div>
+        ) : (
+          <ReactMarkdown
+            children={markdown}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ node, ...props }) => (
+                <a {...props} target="_blank" rel="noreferrer">
+                  {props.children}
+                </a>
+              )
+            }}
+          />
+        )}
       </div>
 
       <div className="tech-stack">

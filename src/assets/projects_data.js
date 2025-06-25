@@ -6,12 +6,13 @@ import quantum_img from '../assets/quantum.png'
 import bookrec_img from '../assets/bookrec.png'
 import frc2023 from '../assets/frc2023.mp4'
 import frc2022 from '../assets/frc2022.mp4'
+import wordle_img from '../assets/wordle-img.png'
 const projects_data = [
     {
         idx: 1,
         proj_name: "Crib Protective Services",
         proj_img: cps_img,
-        proj_summary: "Infant monitoring system using TensorFlow, OpenMV, and more, featuring audio analysis and motion detection",
+        proj_summary: "Infant monitoring system using TensorFlow, OpenCV, and more, featuring audio analysis and motion detection",
         proj_link: "https://github.com/jen051/Hacklytics25",
         tech_stack: ["TensorFlow", "Keras", "numpy", "pandas", "librosa", "OpenCV", "Streamlit", "Python", "React"],
         extra_imgs: [],
@@ -87,6 +88,15 @@ const projects_data = [
         tech_stack: [],
         extra_imgs: [],
         extra_vids: [],
+    },
+    {
+        idx: 9,
+        proj_name: "Wordle Web Game",
+        proj_img: wordle_img,
+        proj_desc: "React-based Wordle clone with colored feedback, built with shadcn/ui + Tailwind",
+        proj_link: "", // leave blank if not using external link
+        tech_stack: ["React", "Tailwind CSS", "shadcn/ui"],
+        component: "wordle", // custom field to trigger embedded component
     }
 ]
 export default projects_data
