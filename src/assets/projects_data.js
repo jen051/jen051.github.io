@@ -91,7 +91,7 @@ const projects_data = [
     },
     {
         idx: 9,
-        proj_name: "Wordle Web Game",
+        proj_name: "Wordle Clone",
         proj_img: wordle_img,
         proj_desc: "React-based Wordle clone with colored feedback, built with shadcn/ui + Tailwind",
         proj_link: "", // leave blank if not using external link

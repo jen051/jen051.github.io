@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './wordle.css';
 
-const maxGuesses = 6;
 const WORD_LENGTH = 5;
 
 function getFeedback(guess, target) {
@@ -37,10 +37,9 @@ export default function WordleGame() {
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
   const [letterStatuses, setLetterStatuses] = useState({});
-  const [maxGuesses, setMaxGuesses] = useState(6); // default 6
+  const [maxGuesses, setMaxGuesses] = useState(6);
   const [hardMode, setHardMode] = useState(false);
   const [revealedHints, setRevealedHints] = useState({ green: {}, yellow: new Set() });
-
 
   const startNewGame = (customMax = maxGuesses) => {
     if (wordList.length === 0) return;
@@ -55,7 +54,6 @@ export default function WordleGame() {
     setLetterStatuses({});
   };
 
-
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.key === 'Enter' && status === 'playing') handleGuess();
@@ -68,7 +66,7 @@ export default function WordleGame() {
     fetch('/words.txt')
       .then(res => res.text())
       .then(text => {
-        const cleaned = text.replace(/^\uFEFF/, ''); // remove BOM if present
+        const cleaned = text.replace(/^﻿/, '');
         const words = cleaned
           .split('\n')
           .map(w => w.trim().toUpperCase())
@@ -93,15 +91,12 @@ export default function WordleGame() {
     }
 
     if (hardMode) {
-      // Must reuse green letters in exact positions
       for (const [pos, letter] of Object.entries(revealedHints.green)) {
         if (guess[+pos] !== letter) {
           setError(`Hard Mode: Must keep "${letter}" in position ${+pos + 1}`);
           return;
         }
       }
-
-      // Must include all yellow letters somewhere
       for (const letter of revealedHints.yellow) {
         if (!guess.includes(letter)) {
           setError(`Hard Mode: Must reuse letter "${letter}"`);
@@ -114,11 +109,9 @@ export default function WordleGame() {
     const feedback = getFeedback(guess, targetWord);
 
     const updatedStatuses = { ...letterStatuses };
-
     for (let i = 0; i < WORD_LENGTH; i++) {
       const letter = guess[i];
       const color = feedback[i];
-
       const current = updatedStatuses[letter];
       if (
         color === 'green' ||
@@ -128,82 +121,59 @@ export default function WordleGame() {
         updatedStatuses[letter] = color;
       }
     }
-
     setLetterStatuses(updatedStatuses);
 
     const newGuesses = [...guesses, { guess, feedback }];
-
     setGuesses(newGuesses);
     setCurrentGuess('');
 
-    if (guess === targetWord) {
-      setStatus('won');
-    } else if (newGuesses.length >= maxGuesses) {
-      setStatus('lost');
-    }
+    if (guess === targetWord) setStatus('won');
+    else if (newGuesses.length >= maxGuesses) setStatus('lost');
 
     const updatedGreen = { ...revealedHints.green };
     const updatedYellow = new Set(revealedHints.yellow);
-
     for (let i = 0; i < WORD_LENGTH; i++) {
       const letter = guess[i];
       const fb = feedback[i];
-      if (fb === 'green') {
-        updatedGreen[i] = letter; // exact position
-      } else if (fb === 'yellow') {
-        updatedYellow.add(letter); // somewhere in guess
-      }
+      if (fb === 'green') updatedGreen[i] = letter;
+      else if (fb === 'yellow') updatedYellow.add(letter);
     }
-
     setRevealedHints({ green: updatedGreen, yellow: updatedYellow });
-
   };
-
 
   if (status === 'loading') return <p>Loading...</p>;
   if (status === 'error') return <p>{error}</p>;
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>Wordle Clone</h2>
-
-      <div style={{ marginBottom: '12px', textAlign: 'center' }}>
-        <label htmlFor="guessLimit" style={{ marginRight: '8px', fontWeight: 'bold' }}>
+    <div className="wordle-container">
+      <div className="controls">
+        <label>
           Number of Guesses:
+          <select
+            value={maxGuesses}
+            onChange={e => {
+              const newMax = parseInt(e.target.value);
+              setMaxGuesses(newMax);
+              startNewGame(newMax);
+            }}
+          >
+            {[4, 5, 6, 7, 8, 9, 10].map(n => (
+              <option key={n} value={n}>{n}</option>
+            ))}
+          </select>
         </label>
-        <select
-          id="guessLimit"
-          value={maxGuesses}
-          onChange={e => {
-            const newMax = parseInt(e.target.value);
-            setMaxGuesses(newMax);
-            startNewGame(newMax);
-          }}
-          style={{ padding: '6px 10px' }}
-        >
-          {[4, 5, 6, 7, 8, 9, 10].map(n => (
-            <option key={n} value={n}>
-              {n}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div style={{ marginBottom: '12px', textAlign: 'center' }}>
-        <label htmlFor="hardModeToggle" style={{ fontWeight: 'bold' }}>
+
+        <label>
           <input
-            id="hardModeToggle"
             type="checkbox"
             checked={hardMode}
-            onChange={(e) => setHardMode(e.target.checked)}
-            style={{ marginRight: '8px' }}
+            onChange={e => setHardMode(e.target.checked)}
           />
-          Hard Mode (must reuse green/yellow letters)
+          Hard Mode
         </label>
       </div>
 
-
-
-      <div style={{ marginTop: '20px' }}>
+      <div className="grid">
         {Array.from({ length: maxGuesses }).map((_, rowIdx) => {
           let rowLetters = Array(WORD_LENGTH).fill('');
           let rowFeedback = Array(WORD_LENGTH).fill(null);
@@ -218,59 +188,17 @@ export default function WordleGame() {
           }
 
           return (
-            <div
-              key={rowIdx}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginBottom: '6px'
-              }}
-            >
+            <div className="row" key={rowIdx}>
               {Array.from({ length: WORD_LENGTH }).map((_, colIdx) => {
                 const char = rowLetters[colIdx] || '';
                 const status = rowFeedback[colIdx];
 
-                let bgColor = '#fff';
-                let borderColor = '#aaa';
-                let textColor = 'black';
-
-                if (status === 'green') {
-                  bgColor = 'green';
-                  textColor = 'white';
-                  borderColor = 'green';
-                } else if (status === 'yellow') {
-                  bgColor = 'goldenrod';
-                  textColor = 'white';
-                  borderColor = 'goldenrod';
-                } else if (status === 'gray') {
-                  bgColor = '#444';
-                  textColor = 'white';
-                  borderColor = '#444';
-                } else if (isCurrentRow && char !== '') {
-                  bgColor = '#eee';
-                }
+                let cellClass = 'tile';
+                if (status) cellClass += ` ${status}`;
+                else if (isCurrentRow && char !== '') cellClass += ' active';
 
                 return (
-                  <div
-                    key={colIdx}
-                    style={{
-                      width: '48px',
-                      height: '48px',
-                      margin: '4px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '24px',
-                      fontWeight: 'bold',
-                      backgroundColor: bgColor,
-                      color: textColor,
-                      border: `2px solid ${borderColor}`,
-                      borderRadius: '4px',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    {char}
-                  </div>
+                  <div key={colIdx} className={cellClass}>{char}</div>
                 );
               })}
             </div>
@@ -278,142 +206,53 @@ export default function WordleGame() {
         })}
       </div>
 
-      <div style={{ marginTop: '20px' }}>
-        {['QWERTYUIOP', 'ASDFGHJKL'].map((row, r) => (
-          <div key={r} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+      <div className="keyboard">
+        {["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"].map((row, r) => (
+          <div className="keyboard-row" key={r}>
             {row.split('').map(letter => (
               <button
                 key={letter}
+                className={`key ${letterStatuses[letter] || ''}`}
                 onClick={() => {
                   if (status !== 'playing') return;
                   if (currentGuess.length < WORD_LENGTH) {
                     setCurrentGuess(prev => prev + letter);
                   }
                 }}
-                style={{
-                  width: '32px',
-                  height: '40px',
-                  margin: '2px',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                  borderRadius: '4px',
-                  backgroundColor:
-                    letterStatuses[letter] === 'green'
-                      ? 'green'
-                      : letterStatuses[letter] === 'yellow'
-                        ? 'goldenrod'
-                        : letterStatuses[letter] === 'gray'
-                          ? '#444'
-                          : '#ccc',
-                  color: letterStatuses[letter] ? 'white' : 'black',
-                  border: 'none',
-                  cursor: status === 'playing' ? 'pointer' : 'not-allowed'
-                }}
               >
                 {letter}
               </button>
             ))}
+            {r === 2 && (
+              <>
+                <button className="key back" onClick={() => {
+                  if (status !== 'playing') return;
+                  setCurrentGuess(prev => prev.slice(0, -1));
+                }}>⌫</button>
+              </>
+            )}
           </div>
         ))}
-
-        {/* Final row: Z to M + ⌫ + Enter */}
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
-          {'ZXCVBNM'.split('').map(letter => (
-            <button
-              key={letter}
-              onClick={() => {
-                if (status !== 'playing') return;
-                if (currentGuess.length < WORD_LENGTH) {
-                  setCurrentGuess(prev => prev + letter);
-                }
-              }}
-              style={{
-                width: '32px',
-                height: '40px',
-                margin: '2px',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                borderRadius: '4px',
-                backgroundColor:
-                  letterStatuses[letter] === 'green'
-                    ? 'green'
-                    : letterStatuses[letter] === 'yellow'
-                      ? 'goldenrod'
-                      : letterStatuses[letter] === 'gray'
-                        ? '#444'
-                        : '#ccc',
-                color: letterStatuses[letter] ? 'white' : 'black',
-                border: 'none',
-                cursor: status === 'playing' ? 'pointer' : 'not-allowed'
-              }}
-            >
-              {letter}
-            </button>
-          ))}
-
-          {/* Backspace */}
-          <button
-            onClick={() => {
-              if (status !== 'playing') return;
-              setCurrentGuess(prev => prev.slice(0, -1));
-            }}
-            style={{
-              width: '60px',
-              height: '40px',
-              margin: '2px',
-              fontWeight: 'bold',
-              borderRadius: '4px',
-              backgroundColor: '#999',
-              color: 'white',
-              border: 'none',
-              cursor: status === 'playing' ? 'pointer' : 'not-allowed'
-            }}
-          >
-            ⌫
-          </button>
-        </div>
       </div>
 
-
       {status === 'playing' && (
-        <div style={{ marginTop: '12px' }}>
+        <div className="manual-input">
           <input
             type="text"
             value={currentGuess}
             onChange={e => setCurrentGuess(e.target.value.toUpperCase())}
             maxLength={WORD_LENGTH}
             placeholder="Enter guess"
-            style={{ textTransform: 'uppercase', padding: '8px', width: '120px' }}
           />
-          <button
-            onClick={handleGuess}
-            style={{ marginLeft: '8px', padding: '8px 16px', cursor: 'pointer' }}
-          >
-            Submit
-          </button>
-          {error && <div style={{ color: 'red', marginTop: '8px' }}>{error}</div>}
+          <button onClick={handleGuess}>Submit</button>
+          {error && <div className="error">{error}</div>}
         </div>
       )}
 
       {status !== 'playing' && (
-        <div style={{ marginTop: '16px' }}>
-          <p style={{ fontWeight: 'bold' }}>
-            {status === 'won' ? '🎉 You won!' : `💀 Game Over! Word was: ${targetWord}`}
-          </p>
-          <button
-            onClick={() => startNewGame()}
-            style={{
-              marginTop: '12px',
-              padding: '8px 16px',
-              background: '#333',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer'
-            }}
-          >
-            New Game
-          </button>
+        <div className="game-end">
+          <p>{status === 'won' ? '🎉 You won!' : `💀 Game Over! Word was: ${targetWord}`}</p>
+          <button onClick={() => startNewGame()}>New Game</button>
         </div>
       )}
     </div>
