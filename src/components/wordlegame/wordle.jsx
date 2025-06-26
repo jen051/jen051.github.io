@@ -1,6 +1,7 @@
+// WordleGame.jsx (cleaned + multiplayer support + opponent grid)
 import React, { useState, useEffect } from 'react';
-import './wordle.css';
-
+import { useNavigate } from 'react-router-dom';
+import { createRoom } from './multiplayer'
 const WORD_LENGTH = 5;
 
 function getFeedback(guess, target) {
@@ -8,8 +9,7 @@ function getFeedback(guess, target) {
   const letterCount = {};
 
   for (let i = 0; i < WORD_LENGTH; i++) {
-    const letter = target[i];
-    letterCount[letter] = (letterCount[letter] || 0) + 1;
+    letterCount[target[i]] = (letterCount[target[i]] || 0) + 1;
   }
 
   for (let i = 0; i < WORD_LENGTH; i++) {
@@ -29,7 +29,17 @@ function getFeedback(guess, target) {
   return result;
 }
 
-export default function WordleGame() {
+export default function WordleGame({
+  multiplayer = false,
+  roomId = null,
+  role = null,
+  targetWord: externalTargetWord = '',
+  maxGuesses: externalMaxGuesses = 6,
+  hardMode = false,
+  onGuessCountUpdate = () => { },
+  opponentGuessCount = 0
+}) {
+
   const [wordList, setWordList] = useState([]);
   const [targetWord, setTargetWord] = useState('');
   const [guesses, setGuesses] = useState([]);
@@ -37,55 +47,56 @@ export default function WordleGame() {
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
   const [letterStatuses, setLetterStatuses] = useState({});
-  const [maxGuesses, setMaxGuesses] = useState(6);
-  const [hardMode, setHardMode] = useState(false);
+  const [maxGuesses, setMaxGuesses] = useState(externalMaxGuesses);
   const [revealedHints, setRevealedHints] = useState({ green: {}, yellow: new Set() });
-
-  const startNewGame = (customMax = maxGuesses) => {
-    if (wordList.length === 0) return;
-    const newWord = wordList[Math.floor(Math.random() * wordList.length)];
-    setTargetWord(newWord);
+  const navigate = useNavigate();
+  const startNewGame = (word) => {
+    setTargetWord(word);
     setGuesses([]);
     setCurrentGuess('');
     setError('');
     setStatus('playing');
-    setMaxGuesses(customMax);
     setRevealedHints({ green: {}, yellow: new Set() });
     setLetterStatuses({});
   };
 
   useEffect(() => {
-    const handleKeyDown = e => {
+    if (multiplayer) {
+      startNewGame(externalTargetWord);
+      setMaxGuesses(externalMaxGuesses);
+      setStatus('playing');
+    } else {
+      fetch('/words.txt')
+        .then(res => res.text())
+        .then(text => {
+          const words = text
+            .replace(/^﻿/, '')
+            .split('\n')
+            .map(w => w.trim().toUpperCase())
+            .filter(w => w.length === 5 && /^[A-Z]+$/.test(w));
+          setWordList(words);
+          const randomWord = words[Math.floor(Math.random() * words.length)];
+          startNewGame(randomWord);
+        })
+        .catch(() => {
+          setError('Failed to load word list.');
+          setStatus('error');
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
       if (e.key === 'Enter' && status === 'playing') handleGuess();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentGuess, status]);
 
-  useEffect(() => {
-    fetch('/words.txt')
-      .then(res => res.text())
-      .then(text => {
-        const cleaned = text.replace(/^﻿/, '');
-        const words = cleaned
-          .split('\n')
-          .map(w => w.trim().toUpperCase())
-          .filter(w => w.length === 5 && /^[A-Z]+$/.test(w));
-        setWordList(words);
-        setTargetWord(words[Math.floor(Math.random() * words.length)]);
-        setStatus('playing');
-      })
-      .catch(() => {
-        setError('Failed to load word list.');
-        setStatus('error');
-      });
-  }, []);
-
   const handleGuess = () => {
     const guess = currentGuess.toUpperCase();
     if (guess.length !== WORD_LENGTH || status !== 'playing') return;
-
-    if (!wordList.includes(guess)) {
+    if (!multiplayer && !wordList.includes(guess)) {
       setError('Not a valid word.');
       return;
     }
@@ -93,13 +104,13 @@ export default function WordleGame() {
     if (hardMode) {
       for (const [pos, letter] of Object.entries(revealedHints.green)) {
         if (guess[+pos] !== letter) {
-          setError(`Hard Mode: Must keep "${letter}" in position ${+pos + 1}`);
+          setError(`Must keep "${letter}" in position ${+pos + 1}`);
           return;
         }
       }
       for (const letter of revealedHints.yellow) {
         if (!guess.includes(letter)) {
-          setError(`Hard Mode: Must reuse letter "${letter}"`);
+          setError(`Must reuse letter "${letter}"`);
           return;
         }
       }
@@ -107,8 +118,8 @@ export default function WordleGame() {
 
     setError('');
     const feedback = getFeedback(guess, targetWord);
-
     const updatedStatuses = { ...letterStatuses };
+
     for (let i = 0; i < WORD_LENGTH; i++) {
       const letter = guess[i];
       const color = feedback[i];
@@ -121,138 +132,142 @@ export default function WordleGame() {
         updatedStatuses[letter] = color;
       }
     }
-    setLetterStatuses(updatedStatuses);
 
+    setLetterStatuses(updatedStatuses);
     const newGuesses = [...guesses, { guess, feedback }];
     setGuesses(newGuesses);
     setCurrentGuess('');
-
     if (guess === targetWord) setStatus('won');
     else if (newGuesses.length >= maxGuesses) setStatus('lost');
 
     const updatedGreen = { ...revealedHints.green };
     const updatedYellow = new Set(revealedHints.yellow);
     for (let i = 0; i < WORD_LENGTH; i++) {
-      const letter = guess[i];
-      const fb = feedback[i];
-      if (fb === 'green') updatedGreen[i] = letter;
-      else if (fb === 'yellow') updatedYellow.add(letter);
+      if (feedback[i] === 'green') updatedGreen[i] = guess[i];
+      else if (feedback[i] === 'yellow') updatedYellow.add(guess[i]);
     }
     setRevealedHints({ green: updatedGreen, yellow: updatedYellow });
+    onGuessCountUpdate(newGuesses.length);
   };
 
   if (status === 'loading') return <p>Loading...</p>;
   if (status === 'error') return <p>{error}</p>;
 
   return (
-    <div className="wordle-container">
-      <div className="controls">
-        <label>
-          Number of Guesses:
-          <select
-            value={maxGuesses}
-            onChange={e => {
-              const newMax = parseInt(e.target.value);
-              setMaxGuesses(newMax);
-              startNewGame(newMax);
-            }}
-          >
-            {[4, 5, 6, 7, 8, 9, 10].map(n => (
-              <option key={n} value={n}>{n}</option>
+    <div style={{ textAlign: 'center' }}>
+      <h2>Wordle Clone</h2>
+      <p style={{ opacity: 0.6 }}>{multiplayer ? `Room: ${roomId}` : ''}</p>
+
+      <div style={{ display: multiplayer ? 'flex' : 'block', justifyContent: 'center', gap: '48px' }}>
+        {/* Main player grid */}
+        <div>
+          {Array.from({ length: maxGuesses }).map((_, rowIdx) => {
+            let rowLetters = Array(WORD_LENGTH).fill('');
+            let rowFeedback = Array(WORD_LENGTH).fill(null);
+            const isCurrentRow = rowIdx === guesses.length;
+            const isPastRow = rowIdx < guesses.length;
+
+            if (isPastRow) {
+              rowLetters = guesses[rowIdx].guess.split('');
+              rowFeedback = guesses[rowIdx].feedback;
+            } else if (isCurrentRow) {
+              rowLetters = currentGuess.padEnd(WORD_LENGTH).split('');
+            }
+
+            return (
+              <div key={rowIdx} style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px' }}>
+                {rowLetters.map((char, colIdx) => {
+                  const status = rowFeedback[colIdx];
+                  let bgColor = '#fff', borderColor = '#aaa', textColor = 'black';
+                  if (status === 'green') [bgColor, textColor, borderColor] = ['green', 'white', 'green'];
+                  else if (status === 'yellow') [bgColor, textColor, borderColor] = ['goldenrod', 'white', 'goldenrod'];
+                  else if (status === 'gray') [bgColor, textColor, borderColor] = ['#444', 'white', '#444'];
+                  else if (isCurrentRow && char !== '') bgColor = '#eee';
+
+                  return (
+                    <div key={colIdx} style={{
+                      width: '48px', height: '48px', margin: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '24px', fontWeight: 'bold', backgroundColor: bgColor, color: textColor,
+                      border: `2px solid ${borderColor}`, borderRadius: '4px', textTransform: 'uppercase'
+                    }}>{char}</div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Opponent grid (shadow only) */}
+        {multiplayer && (
+          <div>
+            <h4 style={{ marginBottom: '4px', opacity: 0.7 }}>Opponent</h4>
+            {Array.from({ length: maxGuesses }).map((_, rowIdx) => (
+              <div key={rowIdx} style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px', opacity: rowIdx < opponentGuessCount ? 1 : 0.2 }}>
+                {Array.from({ length: WORD_LENGTH }).map((_, colIdx) => (
+                  <div key={colIdx} style={{
+                    width: '32px', height: '32px', margin: '2px', borderRadius: '4px',
+                    border: '2px solid #bbb', backgroundColor: rowIdx < opponentGuessCount ? '#999' : 'transparent'
+                  }}></div>
+                ))}
+              </div>
             ))}
-          </select>
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={hardMode}
-            onChange={e => setHardMode(e.target.checked)}
-          />
-          Hard Mode
-        </label>
-      </div>
-
-      <div className="grid">
-        {Array.from({ length: maxGuesses }).map((_, rowIdx) => {
-          let rowLetters = Array(WORD_LENGTH).fill('');
-          let rowFeedback = Array(WORD_LENGTH).fill(null);
-          let isCurrentRow = rowIdx === guesses.length;
-          let isPastRow = rowIdx < guesses.length;
-
-          if (isPastRow) {
-            rowLetters = guesses[rowIdx].guess.split('');
-            rowFeedback = guesses[rowIdx].feedback;
-          } else if (isCurrentRow) {
-            rowLetters = currentGuess.padEnd(WORD_LENGTH).split('');
-          }
-
-          return (
-            <div className="row" key={rowIdx}>
-              {Array.from({ length: WORD_LENGTH }).map((_, colIdx) => {
-                const char = rowLetters[colIdx] || '';
-                const status = rowFeedback[colIdx];
-
-                let cellClass = 'tile';
-                if (status) cellClass += ` ${status}`;
-                else if (isCurrentRow && char !== '') cellClass += ' active';
-
-                return (
-                  <div key={colIdx} className={cellClass}>{char}</div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="keyboard">
-        {["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"].map((row, r) => (
-          <div className="keyboard-row" key={r}>
-            {row.split('').map(letter => (
-              <button
-                key={letter}
-                className={`key ${letterStatuses[letter] || ''}`}
-                onClick={() => {
-                  if (status !== 'playing') return;
-                  if (currentGuess.length < WORD_LENGTH) {
-                    setCurrentGuess(prev => prev + letter);
-                  }
-                }}
-              >
-                {letter}
-              </button>
-            ))}
-            {r === 2 && (
-              <>
-                <button className="key back" onClick={() => {
-                  if (status !== 'playing') return;
-                  setCurrentGuess(prev => prev.slice(0, -1));
-                }}>⌫</button>
-              </>
-            )}
           </div>
-        ))}
+        )}
       </div>
+
 
       {status === 'playing' && (
-        <div className="manual-input">
+        <div style={{ marginTop: '12px' }}>
           <input
             type="text"
             value={currentGuess}
             onChange={e => setCurrentGuess(e.target.value.toUpperCase())}
             maxLength={WORD_LENGTH}
             placeholder="Enter guess"
+            style={{ textTransform: 'uppercase', padding: '8px', width: '120px' }}
           />
-          <button onClick={handleGuess}>Submit</button>
-          {error && <div className="error">{error}</div>}
+          <button onClick={handleGuess} style={{ marginLeft: '8px', padding: '8px 16px', cursor: 'pointer' }}>
+            Submit
+          </button>
+          {error && <div style={{ color: 'red', marginTop: '8px' }}>{error}</div>}
         </div>
       )}
 
       {status !== 'playing' && (
-        <div className="game-end">
-          <p>{status === 'won' ? '🎉 You won!' : `💀 Game Over! Word was: ${targetWord}`}</p>
-          <button onClick={() => startNewGame()}>New Game</button>
+        <div style={{ marginTop: '16px' }}>
+          <p style={{ fontWeight: 'bold' }}>
+            {status === 'won' ? '🎉 You won!' : `💀 Game Over! Word was: ${targetWord}`}
+          </p>
+          {!multiplayer && (
+            <button onClick={() => startNewGame(wordList[Math.floor(Math.random() * wordList.length)])} style={{
+              marginTop: '12px', padding: '8px 16px', background: '#333', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer'
+            }}>
+              New Game
+            </button>
+          )}
+        </div>
+      )}
+
+      {!multiplayer && (
+        <div style={{ marginTop: '20px' }}>
+          <button
+            onClick={async () => {
+              const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+              const roomId = await createRoom(randomWord);
+              navigate(`/multiplayer/${roomId}`);
+            }}
+            style={{
+              marginTop: '12px',
+              padding: '8px 16px',
+              background: '#1976d2',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Enable Multiplayer Mode
+          </button>
         </div>
       )}
     </div>

@@ -47,7 +47,7 @@ export default function AllProjects() {
         {projects_data.map((work) => (
           <Link
             key={work.idx}
-            to={`/projects/${work.proj_name}`}
+            to={`/projects/${work.proj_url}`}
             className={`project-card ${inView ? 'visible' : ''}`}
             style={{ '--delay': `${work.idx * 150}ms` }}
           >{work.proj_video

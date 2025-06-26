@@ -7,10 +7,9 @@ import remarkGfm from 'remark-gfm';
 import WordleGame from '../wordlegame/wordle.jsx';
 
 export default function ProjectDetail() {
-  const { projId } = useParams();
-  const project = projects_data.find(
-    p => String(p.idx) === projId || p.proj_name === projId
-  );
+  const { proj_url } = useParams();
+  const project = projects_data.find(p => p.proj_url === proj_url);
+
 
   const [markdown, setMarkdown] = useState('');
 
